@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 	argc = 4;
 	char* temp[4];
 	temp[0] = _strdup("Lab01.exe");
-	temp[1] = _strdup("--hist");
+	temp[1] = _strdup("--rgb2hsv");
 	temp[2] = _strdup("test_color.png");
 	temp[3] = _strdup("f");
 	argv = temp;

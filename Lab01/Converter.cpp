@@ -121,7 +121,7 @@ int Converter::RGB2HSV(const Mat& sourceImage, Mat& destinationImage)
 		}
 	}
 
-	return 1;
+	return 0;
 }
 void hsv2rgb(float h, float s, float v, float & r, float & g, float & b)
 {
@@ -172,7 +172,7 @@ int Converter::HSV2RGB(const Mat& sourceImage, Mat& destinationImage)
 		}
 	}
 
-	return 1;
+	return 0;
 }
 
 int Converter::Convert(Mat& sourceImage, Mat& destinationImage, int type)

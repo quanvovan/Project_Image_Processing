@@ -77,7 +77,6 @@ int main(int argc, char* argv[])
 		else if (strcmp(command, "--rotate") == 0)
 		{
 			
-
 			float angle = atof(argv[4]);  // góc xoay
 			if (Interpolate == "--bl")
 			{
@@ -109,7 +108,6 @@ int main(int argc, char* argv[])
 		}
 		else if (strcmp(command, "--flip") == 0)
 		{
-			
 			bool direction = (argv[4]);  // string to bool :)) 
 			if (Interpolate == "--bl")
 			{
