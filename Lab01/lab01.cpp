@@ -12,9 +12,9 @@ int main(int argc, char* argv[])
 	argc = 4;
 	char* temp[4];
 	temp[0] = _strdup("Lab01.exe");
-	temp[1] = _strdup("--drawhist");
-	temp[2] = _strdup("test_gray.png");
-	temp[3] = _strdup("commandArgs");
+	temp[1] = _strdup("--rgb2gray");
+	temp[2] = _strdup("test_color.png");
+	temp[3] = _strdup("0");
 	argv = temp;
 #pragma endregion
 
@@ -22,12 +22,6 @@ int main(int argc, char* argv[])
 
 	try
 	{
-		if (argc < 3)
-		{
-			//Print exception
-			throw "Missing parameter!";
-		}
-
 		command = argv[1];
 		inputPath = argv[2];
 
@@ -88,6 +82,20 @@ int main(int argc, char* argv[])
 		{
 			// so sanh
 		}
+
+
+		//in kết quả
+		if (isSuccess==0)
+		{
+			imshow("Source Image", input);
+			imshow("Destination Image", output);
+			waitKey(0);
+		}
+		else
+		{
+			throw "Error:..........";
+		}
+		//----------------------------------
 	}
 	catch (const char* msg)
 	{

@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 	argc = 5;
 	char* temp[5];
 	temp[0] = _strdup("main.exe");
-	temp[1] = _strdup("--zoom");
+	temp[1] = _strdup("--median");
 	temp[2] = _strdup("--bl");
 	temp[3] = _strdup("test.png");
 	temp[4] = _strdup("commandArgs");
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 		}
 
 		//in kết quả
-		if (isSuccess)
+		if (isSuccess==0)
 		{
 			imshow("Source Image", srcImg);
 			imshow("Destination Image", dstImg);
