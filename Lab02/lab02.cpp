@@ -8,13 +8,14 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 #pragma region ONLY_FOR_DEBUG
-	argc = 5;
-	char* temp[5];
+	argc = 6;
+	char* temp[6];
 	temp[0] = _strdup("main.exe");
 	temp[1] = _strdup("--zoom");
 	temp[2] = _strdup("--bl");
-	temp[3] = _strdup("test.png");
-	temp[4] = _strdup("commandArgs");
+	temp[3] = _strdup("test_color.png");
+	temp[4] = _strdup("1.5");
+	temp[5] = _strdup("1.5");
 	argv = temp;
 #pragma endregion
 
@@ -39,10 +40,6 @@ int main(int argc, char* argv[])
 
 		if (strcmp(command, "--zoom") == 0)
 		{
-			if (argc < 5)
-			{
-				throw "Missing parameter!";
-			}
 
 			float sx = atof(argv[4]); //zoom theo x 
 			float sy = atof(argv[5]); //zoom theo y
@@ -61,10 +58,6 @@ int main(int argc, char* argv[])
 		}
 		else if (strcmp(command, "--resize") == 0)
 		{
-			if (argc < 5)
-			{
-				throw "Missing parameter!";
-			}
 
 			int newWidth = stoi(argv[4]); // kích thước mới 
 			int newHeight = stoi(argv[5]);
@@ -83,10 +76,7 @@ int main(int argc, char* argv[])
 		}
 		else if (strcmp(command, "--rotate") == 0)
 		{
-			if (argc < 4)
-			{
-				throw "Missing parameter!";
-			}
+			
 
 			float angle = atof(argv[4]);  // góc xoay
 			if (Interpolate == "--bl")
@@ -103,11 +93,7 @@ int main(int argc, char* argv[])
 		}
 		else if (strcmp(command, "--rotateN") == 0)
 		{
-			if (argc < 4)
-			{
-				throw "Missing parameter!";
-			}
-
+			
 			float angle = atof(argv[4]);  // góc xoay
 			if (Interpolate == "--bl")
 			{
@@ -123,11 +109,7 @@ int main(int argc, char* argv[])
 		}
 		else if (strcmp(command, "--flip") == 0)
 		{
-			if (argc < 4)
-			{
-				throw "Missing parameter!";
-			}
-
+			
 			bool direction = (argv[4]);  // string to bool :)) 
 			if (Interpolate == "--bl")
 			{
@@ -168,6 +150,7 @@ int main(int argc, char* argv[])
 	free(temp[2]);
 	free(temp[3]);
 	free(temp[4]);
+	free(temp[5]);
 #pragma endregion
 
 	//system("pause");
