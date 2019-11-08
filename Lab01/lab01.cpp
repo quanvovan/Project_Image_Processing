@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
 		else if (strcmp(command, "--hsv2rgb") == 0)
 		{
 			Converter converter;
-			isSuccessConvert  = converter.Convert(input, output, 0);
+			isSuccessConvert  = converter.Convert(input, output, 3);
 		}
 		else if (strcmp(command, "--bright") == 0)
 		{
