@@ -12,9 +12,9 @@ int main(int argc, char* argv[])
 	argc = 4;
 	char* temp[4];
 	temp[0] = _strdup("Lab01.exe");
-	temp[1] = _strdup("--rgb2gray");
+	temp[1] = _strdup("--hist");
 	temp[2] = _strdup("test_color.png");
-	temp[3] = _strdup("0");
+	temp[3] = _strdup("f");
 	argv = temp;
 #pragma endregion
 
@@ -27,73 +27,92 @@ int main(int argc, char* argv[])
 
 		Mat input = imread(inputPath, -1);
 		Mat output;
-		int isSuccess =0;
-
+		int isSuccessConvert  =0;
+		int isSuccessTrans = 0;
 		// Command in LAB 1
 		if (strcmp(command, "--rgb2gray") == 0)
 		{
 			Converter converter;
-			isSuccess = converter.Convert(input, output, 0);
+			isSuccessConvert  = converter.Convert(input, output, 0);
 		}
 		else if (strcmp(command, "--gray2rgb") == 0)
 		{
 			Converter converter;
-			isSuccess = converter.Convert(input, output, 1);
+			isSuccessConvert  = converter.Convert(input, output, 1);
 		}
 		else if (strcmp(command, "--rgb2hsv") == 0)
 		{
 			Converter converter;
-			isSuccess = converter.Convert(input, output, 2);
+			isSuccessConvert  = converter.Convert(input, output, 2);
 
 		}
 		else if (strcmp(command, "--hsv2rgb") == 0)
 		{
 			Converter converter;
-			isSuccess = converter.Convert(input, output, 0);
+			isSuccessConvert  = converter.Convert(input, output, 0);
 		}
 		else if (strcmp(command, "--bright") == 0)
 		{
 			ColorTransformer ColorTrans;
 			uchar b = atoi(argv[3]);
-			isSuccess = ColorTrans.ChangeBrighness(input, output, b);
+			isSuccessTrans = ColorTrans.ChangeBrighness(input, output, b);
 		}
 		else if (strcmp(command, "--contrast") == 0)
 		{
 			ColorTransformer ColorTrans;
 			uchar c = atoi(argv[3]);
-			isSuccess = ColorTrans.ChangeContrast(input, output, c);
+			isSuccessTrans = ColorTrans.ChangeContrast(input, output, c);
 		}
 		else if (strcmp(command, "--hist") == 0)
 		{	
 			ColorTransformer ColorTrans;
-			isSuccess = ColorTrans.CalcHistogram(input, output);
+			isSuccessTrans = ColorTrans.CalcHistogram(input, output);
  		}
 		else if (strcmp(command, "--equalhist") == 0)
 		{
 			ColorTransformer ColorTrans;
- 			isSuccess = ColorTrans.HistogramEqualization(input, output);
+ 			isSuccessTrans = ColorTrans.HistogramEqualization(input, output);
  		}
 		else if (strcmp(command, "--drawhist") == 0)
 		{
 			ColorTransformer ColorTrans;
-			isSuccess = ColorTrans.DrawHistogram(input, output);
+			Mat hist;
+			isSuccessTrans = ColorTrans.CalcHistogram(input, hist);
+
+			if (isSuccessTrans == 1)
+				isSuccessTrans = ColorTrans.DrawHistogram(hist, output);
 		}
 		else if (strcmp(command, "--compare") == 0)
 		{
 			// so sanh
 		}
 
-
-		//in kết quả
-		if (isSuccess==0)
+		if (strcmp(command, "--rgb2gray") == 0 || strcmp(command, "--gray2rgb")==0 || strcmp(command, "--rgb2hsv") == 0 || strcmp(command, "--hsv2rgb") == 0)
 		{
-			imshow("Source Image", input);
-			imshow("Destination Image", output);
-			waitKey(0);
+			//in kết quả
+			if (isSuccessConvert == 0)
+			{
+				imshow("Source Image", input);
+				imshow("Destination Image", output);
+				waitKey(0);
+			}
+			else
+			{
+				throw "Error:..........";
+			}
 		}
-		else
+		if (strcmp(command, "--bright") == 0 || strcmp(command, "--contrast") == 0 || strcmp(command, "--hist") == 0 || strcmp(command, "--hist") == 0 || strcmp(command, "--equalhist") == 0 || strcmp(command, "--drawhist") == 0 || strcmp(command, "--compare") == 0)
 		{
-			throw "Error:..........";
+			if (isSuccessTrans==1)
+			{
+				imshow("Source Image", input);
+				imshow("Destination Image", output);
+				waitKey(0);
+			}
+			else
+			{
+				throw "Error:..........";
+			}
 		}
 		//----------------------------------
 	}
